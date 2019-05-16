@@ -79,6 +79,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
+    final double diagonal = sqrt(height * height + width * width);
     return GestureDetector(
       onTap: () {
         _animateColor();
@@ -90,7 +92,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           children: <Widget>[
             CircularRevealAnimation(
               minRadius: 0,
-              maxRadius: height,
+              maxRadius: diagonal,
               center: offset,
               animation: _animation,
               child: Container(
