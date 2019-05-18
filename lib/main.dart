@@ -95,7 +95,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             ),
             Center(
               child: Text(
-                'Hello',
+                'Hey there',
                 style: TextStyle(fontSize: 40),
               ),
             ),
