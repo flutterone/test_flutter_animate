@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:circular_reveal_animation/circular_reveal_animation.dart';
 import 'dart:math';
+
+import 'package:test_flutter_animate/circle_anim.dart';
 
 
 // raw prototype animate test app
@@ -26,7 +27,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Animation<double> _animation;
   Color _color;
   final random = Random();
-  Offset offset = Offset.zero;
+  Offset _offset = Offset.zero;
 
   @override
   void initState() {
@@ -72,15 +73,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   void getOffset(TapUpDetails val) {
     setState(() {
-      offset = Offset(val.globalPosition.dx, val.globalPosition.dy);
+      _offset = Offset(val.globalPosition.dx, val.globalPosition.dy);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
-    final double width = MediaQuery.of(context).size.width;
-    final double diagonal = sqrt(height * height + width * width);
     return GestureDetector(
       onTap: () {
         _animateColor();
@@ -90,19 +88,15 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       child: Scaffold(
         body: Stack(
           children: <Widget>[
-            CircularRevealAnimation(
-              minRadius: 0,
-              maxRadius: diagonal,
-              center: offset,
+            CircleAnim(
+              offset: _offset,
               animation: _animation,
-              child: Container(
-                color: _color,
-              ),
+              color: _color,
             ),
             Center(
               child: Text(
-                'Hey there',
-                style: TextStyle(fontSize: 30),
+                'Hello',
+                style: TextStyle(fontSize: 40),
               ),
             ),
           ],
