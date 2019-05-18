@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:circular_reveal_animation/circular_reveal_animation.dart';
 import 'package:meta/meta.dart';
+import 'dart:math';
 
 class CircleAnim extends StatelessWidget {
   final Offset offset;
